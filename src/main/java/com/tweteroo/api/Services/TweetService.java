@@ -31,10 +31,11 @@ public class TweetService {
         if (user.isEmpty())
             return Optional.empty();
 
-        TweetModel tweet = new TweetModel(tweetDTO);
+        TweetModel tweet = new TweetModel(tweetDTO, user.get());
 
         tweetRepository.save(tweet);
 
         return Optional.of(tweet);
     }
+
 }

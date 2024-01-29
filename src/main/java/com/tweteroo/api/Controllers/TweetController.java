@@ -37,12 +37,12 @@ public class TweetController {
 
     @PostMapping()
     public ResponseEntity<Object> postMethodName(@RequestBody @Valid TweetDTO tweetDTO) {
-        Optional<TweetModel> tweet= tweetService.createTweet(tweetDTO);
+        Optional<TweetModel> tweet = tweetService.createTweet(tweetDTO);
 
-        if(tweet.isEmpty()){
-            ResponseEntity.status(HttpStatus.NOT_FOUND).body("The user does not exist.");
+        if (tweet.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The user does not exist.");
         }
-        
+
         return ResponseEntity.status(HttpStatus.CREATED).body(tweet);
     }
 

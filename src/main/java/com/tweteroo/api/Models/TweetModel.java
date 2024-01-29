@@ -1,6 +1,7 @@
 package com.tweteroo.api.Models;
 
 import com.tweteroo.api.DTOs.TweetDTO;
+import com.tweteroo.api.DTOs.UserDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,7 +24,11 @@ public class TweetModel {
 
     public TweetModel(TweetDTO tweetDTO) {
         this.text = tweetDTO.getText();
-        //this.usermodel= tweetDTO.getUserId();
+    }
+
+    public TweetModel(TweetDTO tweetDTO, UserModel user) {
+        this.text = tweetDTO.getText();
+        this.user = user;
     }
 
     @Id
@@ -35,5 +40,5 @@ public class TweetModel {
 
     @ManyToOne
     @JoinColumn(name = "userId")
-    private UserModel usermodel;
+    private UserModel user;
 }
