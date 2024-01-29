@@ -2,7 +2,6 @@ package com.tweteroo.api.Controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestClient.ResponseSpec;
 
 import com.tweteroo.api.DTOs.TweetDTO;
 import com.tweteroo.api.Models.TweetModel;
@@ -44,7 +43,7 @@ public class TweetController {
         if (tweets.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The user does not exist.");
         }
-        
+
         return ResponseEntity.status(HttpStatus.OK).body(tweets);
     }
 
