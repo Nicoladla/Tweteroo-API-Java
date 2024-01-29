@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class TweetDTO {
 
-    @NotBlank
+    @NotBlank(message = "The field cannot be empty")
     @Size(min = 4, max = 280, message = "The tweet must be no longer than 280 characters and no shorter than 4 characters")
     private String text;
 
