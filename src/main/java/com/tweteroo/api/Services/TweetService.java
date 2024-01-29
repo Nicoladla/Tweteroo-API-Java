@@ -25,6 +25,17 @@ public class TweetService {
         return tweetRepository.findAll();
     }
 
+    public Optional<List<TweetModel>> findTweetsById(Long userId) {
+        Optional<UserModel> user = userRepository.findById(userId);
+
+        if (user.isEmpty())
+            return Optional.empty();
+
+        List<TweetModel> tweets= tweetRepository.findTweetsByUserId(userId);
+
+        return Optional.of(tweets);
+    }
+
     public Optional<TweetModel> createTweet(TweetDTO tweetDTO) {
         Optional<UserModel> user = userRepository.findById(tweetDTO.getUserId());
 
