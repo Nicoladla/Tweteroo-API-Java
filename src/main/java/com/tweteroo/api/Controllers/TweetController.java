@@ -3,14 +3,20 @@ package com.tweteroo.api.Controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tweteroo.api.DTOs.TweetDTO;
 import com.tweteroo.api.Models.TweetModel;
 import com.tweteroo.api.Services.TweetService;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/tweets")
@@ -27,6 +33,17 @@ public class TweetController {
         List<TweetModel> tweets = tweetService.findTweets();
 
         return ResponseEntity.status(HttpStatus.OK).body(tweets);
+    }
+
+    @PostMapping()
+    public ResponseEntity<Object> postMethodName(@RequestBody @Valid TweetDTO tweetDTO) {
+        Optional<TweetModel> tweet= tweetService.createTweet(tweetDTO);
+
+        if(tweet.isEmpty()){
+            ResponseEntity.status(HttpStatus.NOT_FOUND).body("The user does not exist.");
+        }
+        
+        return ResponseEntity.status(HttpStatus.CREATED).body(tweet);
     }
 
 }

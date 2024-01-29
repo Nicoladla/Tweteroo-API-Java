@@ -23,6 +23,7 @@ public class TweetModel {
 
     public TweetModel(TweetDTO tweetDTO) {
         this.text = tweetDTO.getText();
+        //this.usermodel= tweetDTO.getUserId();
     }
 
     @Id
