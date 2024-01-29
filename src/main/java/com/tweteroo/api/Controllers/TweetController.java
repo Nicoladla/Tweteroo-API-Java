@@ -48,7 +48,7 @@ public class TweetController {
     }
 
     @PostMapping()
-    public ResponseEntity<Object> postMethodName(@RequestBody @Valid TweetDTO tweetDTO) {
+    public ResponseEntity<Object> postTweet(@RequestBody @Valid TweetDTO tweetDTO) {
         Optional<TweetModel> tweet = tweetService.createTweet(tweetDTO);
 
         if (tweet.isEmpty()) {
